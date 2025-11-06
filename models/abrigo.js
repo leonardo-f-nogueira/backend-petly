@@ -1,16 +1,15 @@
+// Este arquivo define o modelo "Abrigo"
+// Ele representa a tabela 'Abrigos' (ONGs) no banco de dados.
+
 'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Abrigo extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Um Abrigo TEM MUITOS Animais
+      this.hasMany(models.Animal, { foreignKey: 'abrigoId', as: 'animais' });
     }
   }
   Abrigo.init({

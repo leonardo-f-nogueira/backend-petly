@@ -1,16 +1,18 @@
+// Este arquivo define o modelo "Animal"
+// Ele representa a tabela 'Animais' no banco de dados.
+
 'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Animal extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Um Animal PERTENCE A UM Abrigo
+      this.belongsTo(models.Abrigo, { foreignKey: 'abrigoId', as: 'abrigo' });
+      
+      // Um Animal TEM MUITAS Solicitações de Interesse
+      this.hasMany(models.SolicitacaoInteresse, { foreignKey: 'animalId', as: 'solicitacoes' });
     }
   }
   Animal.init({

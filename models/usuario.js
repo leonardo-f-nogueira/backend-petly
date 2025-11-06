@@ -1,16 +1,15 @@
+// Este arquivo define o modelo "Usuario"
+// Ele representa a tabela 'Usuarios' (adotantes/padrinhos) no banco de dados.
+
 'use strict';
 const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // Um Usuario TEM MUITAS Solicitações de Interesse
+      this.hasMany(models.SolicitacaoInteresse, { foreignKey: 'usuarioId', as: 'solicitacoes' });
     }
   }
   Usuario.init({
