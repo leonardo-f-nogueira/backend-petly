@@ -5,6 +5,8 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require('bcryptjs'); // 1. Importe o 'bcryptjs'
+
 module.exports = (sequelize, DataTypes) => {
   class Abrigo extends Model {
     static associate(models) {
@@ -26,6 +28,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Abrigo',
+    tableName: 'Abrigos',
+    // 2. Adicione o hook 'beforeCreate' aqui dentro do init()
+    hooks: {
+      beforeCreate: async (abrigo) => {
+        if (abrigo.password) {
+          const salt = await bcrypt.genSalt(10);
+          abrigo.password = await bcrypt.hash(abrigo.password, salt);
+        }
+      }
+    }
   });
   return Abrigo;
 };

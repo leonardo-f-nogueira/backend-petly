@@ -1,16 +1,14 @@
-// Este é o arquivo principal do nosso servidor.
-
 const express = require("express");
 const cors = require("cors");
 
-// Inicializa o Express
+const authRoutes = require("./routes/authRoutes");
+const animalRoutes = require("./routes/animalRoutes");
+
 const app = express();
 
 // --- Middlewares Essenciais ---
 
 // 1. Habilita o CORS (Cross-Origin Resource Sharing)
-// Isso permite que seu frontend React (rodando em localhost:3000)
-// possa fazer requisições para o seu backend (rodando em localhost:8080)
 app.use(cors());
 
 // 2. Habilita o Express para "entender" JSON no body das requisições
@@ -25,9 +23,10 @@ app.get("/", (req, res) => {
   });
 });
 
-// --- Porta do Servidor ---
-// Define a porta que o servidor vai "escutar"
-// Deve ser a mesma que expomos no docker-compose.yml
+//Fala para o app para usar o arquivo de rotas de autenticação
+app.use("/auth", authRoutes);
+app.use("/animais", animalRoutes);
+
 const PORT = 8080;
 
 app.listen(PORT, () => {

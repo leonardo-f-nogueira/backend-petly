@@ -5,6 +5,8 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
     static associate(models) {
@@ -20,6 +22,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Usuario',
+    tableName: 'Usuarios',
+    // HOOKS: A forma mais segura de adicionar hooks é aqui, nas opções do init
+    hooks: {
+      beforeCreate: async (usuario) => {
+        if (usuario.password) {
+          const salt = await bcrypt.genSalt(10);
+          usuario.password = await bcrypt.hash(usuario.password, salt);
+        }
+      }
+    }
   });
   return Usuario;
 };
