@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const animalRoutes = require("./routes/animalRoutes");
 const solicitacaoRoutes = require("./routes/solicitacaoRoutes")
+const abrigoRoutes = require("./routes/abrigoRoutes")
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/animais", animalRoutes);
 app.use("/solicitacoes", solicitacaoRoutes);
+app.use("/abrigos", abrigoRoutes);
 
 const PORT = 8080;
 
