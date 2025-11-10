@@ -23,14 +23,14 @@ exports.cadastroAbrigo = async (req, res) => {
     animalCount,
   } = req.body;
 
-  // 1. Validação (Estilo do Professor)
+  // 1. Validação
   if (!name || !email || !password || !cnpj || !address || !phone) {
     return res.json({
       erro: "Campos obrigatórios (Nome, Email, Senha, CNPJ, Endereço, Telefone) não preenchidos!",
     });
   }
 
-  // 2. Lógica de Criação (com try...catch de segurança)
+  // 2. Lógica de Criação
   try {
     const novoAbrigo = await Abrigo.create({
       name,
@@ -57,9 +57,9 @@ exports.cadastroAbrigo = async (req, res) => {
 
 // --- Cadastro de Usuário ---
 exports.cadastroUsuario = async (req, res) => {
-  const { name, email, password, location } = req.body;
+  const { name, email, password, location, phone } = req.body;
 
-  // 1. Validação (Estilo do Professor)
+  // 1. Validação
   if (!name || !email || !password) {
     return res.json({
       erro: "Campos obrigatórios (Nome, Email, Senha) não preenchidos!",
@@ -73,6 +73,7 @@ exports.cadastroUsuario = async (req, res) => {
       email,
       password,
       location,
+      phone,
     });
 
     novoUsuario.password = undefined;
