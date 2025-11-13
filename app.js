@@ -1,21 +1,17 @@
-// Este é o arquvio principal do servidor Petly
+// Este é o arquivo principal do nosso servidor (app.js)
+// Ele liga o Express, configura o CORS e escuta por conexões.
+
 const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("./routes/authRoutes");
 const animalRoutes = require("./routes/animalRoutes");
-const solicitacaoRoutes = require("./routes/solicitacaoRoutes")
-const abrigoRoutes = require("./routes/abrigoRoutes")
+const solicitacaoRoutes = require("./routes/solicitacaoRoutes");
 
 const app = express();
 
-// --- Middlewares Essenciais ---
-
-// Habilita o CORS
 app.use(cors());
-// Habilita o Express para entender JSON no body das requisições
 app.use(express.json());
-
 
 app.get("/", (req, res) => {
   res.json({
@@ -23,11 +19,9 @@ app.get("/", (req, res) => {
   });
 });
 
-
 app.use("/auth", authRoutes);
 app.use("/animais", animalRoutes);
 app.use("/solicitacoes", solicitacaoRoutes);
-app.use("/abrigos", abrigoRoutes);
 
 const PORT = 8080;
 
