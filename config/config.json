@@ -1,26 +1,14 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "petly_db",
-    "host": "database",
-    "port": 5432,
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "storage": "petly-dev.db"
   },
   "test": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "petly_db",
-    "host": "database",
-    "port": 5432,
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "storage": "petly-test.db"
   },
   "production": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "petly_db",
-    "host": "database",
-    "port": 5432,
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "storage": "petly-prod.db"
   }
 }

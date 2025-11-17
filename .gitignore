@@ -12,7 +12,10 @@ logs
 .env.local
 .env.development
 .env.production
-*.env
+.env
 
 .vscode/
 .idea/
+
+.db
+.db-journal
