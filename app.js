@@ -1,5 +1,4 @@
-// Este é o arquivo principal do nosso servidor (app.js)
-// Ele liga o Express, configura o CORS e escuta por conexões.
+// Esse é o arquivo principal do nosso servidor (app.js)
 
 const express = require("express");
 const cors = require("cors");

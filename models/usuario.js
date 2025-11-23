@@ -1,5 +1,4 @@
-// Este arquivo define o modelo "Usuario"
-// Ele representa a tabela 'Usuarios' (adotantes/padrinhos) no banco de dados.
+// Este arquivo representa a tabela 'Usuarios' (adotantes/padrinhos) no banco de dados.
 
 'use strict';
 const {
@@ -10,7 +9,6 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
     static associate(models) {
-      // Um Usuario TEM MUITAS Solicitações de Interesse
       this.hasMany(models.SolicitacaoInteresse, { foreignKey: 'usuarioId', as: 'solicitacoes' });
     }
   }
@@ -24,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Usuario',
     tableName: 'Usuarios',
-    // HOOKS: A forma mais segura de adicionar hooks é aqui, nas opções do init
     hooks: {
       beforeCreate: async (usuario) => {
         if (usuario.password) {

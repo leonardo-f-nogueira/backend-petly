@@ -1,4 +1,4 @@
-// Define as rotas dos Animais
+// Esse arquivo define as rotas dos Animais
 
 const express = require('express');
 const router = express.Router();

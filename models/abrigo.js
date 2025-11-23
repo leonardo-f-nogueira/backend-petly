@@ -1,16 +1,11 @@
-// Este arquivo define o modelo "Abrigo"
-// Ele representa a tabela 'Abrigos' (ONGs) no banco de dados.
-
+// Este arquivo representa a tabela 'Abrigos' (ONGs) no banco de dados.
 'use strict';
-const {
-  Model
-} = require('sequelize');
-const bcrypt = require('bcryptjs'); // 1. Importe o 'bcryptjs'
+const { Model } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   class Abrigo extends Model {
     static associate(models) {
-      // Um Abrigo TEM MUITOS Animais
       this.hasMany(models.Animal, { foreignKey: 'abrigoId', as: 'animais' });
     }
   }
@@ -29,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Abrigo',
     tableName: 'Abrigos',
-    // 2. Adicione o hook 'beforeCreate' aqui dentro do init()
     hooks: {
       beforeCreate: async (abrigo) => {
         if (abrigo.password) {

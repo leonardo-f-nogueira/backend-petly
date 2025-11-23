@@ -1,17 +1,12 @@
-// Este arquivo define o modelo "Animal"
-// Ele representa a tabela 'Animais' no banco de dados.
+// Este arquivo representa a tabela 'Animais' no banco de dados.
 
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Animal extends Model {
     static associate(models) {
-      // Um Animal PERTENCE A UM Abrigo
       this.belongsTo(models.Abrigo, { foreignKey: 'abrigoId', as: 'abrigo' });
-      
-      // Um Animal TEM MUITAS Solicitações de Interesse
       this.hasMany(models.SolicitacaoInteresse, { foreignKey: 'animalId', as: 'solicitacoes' });
     }
   }

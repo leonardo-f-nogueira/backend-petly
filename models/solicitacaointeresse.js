@@ -1,5 +1,4 @@
-// Este arquivo define o modelo "SolicitacaoInteresse"
-// Ele representa a tabela 'SolicitacaoInteresses' (a "conexão" entre usuário e animal).
+// Este arquivo representa a tabela 'SolicitacaoInteresses' (a "conexão" entre usuário e animal).
 
 'use strict';
 const {
@@ -8,10 +7,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class SolicitacaoInteresse extends Model {
     static associate(models) {
-      // Uma Solicitação PERTENCE A UM Usuario
       this.belongsTo(models.Usuario, { foreignKey: 'usuarioId', as: 'usuario' });
       
-      // Uma Solicitação PERTENCE A UM Animal
       this.belongsTo(models.Animal, { foreignKey: 'animalId', as: 'animal' });
     }
   }
