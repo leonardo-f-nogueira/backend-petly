@@ -1,4 +1,4 @@
-// Este arquivo representa a tabela 'Abrigos' (ONGs) no banco de dados.
+// Arquivo da tabela Abrigos (ONG/Abrigo) no BD.
 'use strict';
 const { Model } = require('sequelize');
 const bcrypt = require('bcryptjs');
@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     activityTime: DataTypes.STRING,
     associationData: DataTypes.STRING,
     socialNetwork: DataTypes.STRING,
-    animalCount: DataTypes.INTEGER
+    animalCount: DataTypes.INTEGER,
+    status: DataTypes.STRING,
+    questionnaireData: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Abrigo',

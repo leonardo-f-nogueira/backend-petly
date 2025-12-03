@@ -1,4 +1,4 @@
-// Este arquivo representa a tabela 'Usuarios' (adotantes/padrinhos) no banco de dados.
+// Arquivo da tabela Usuarios(adotantes/padrinhos) no BD.
 
 'use strict';
 const {
@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     location: DataTypes.STRING,
-    phone: DataTypes.STRING
+    phone: DataTypes.STRING,
+    role: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Usuario',

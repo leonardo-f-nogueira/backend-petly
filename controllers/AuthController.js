@@ -1,4 +1,4 @@
-// Este arquivo cuida da lógica de Autenticação (Cadastro e Login)
+// Arquivo da lógica de Autenticação (Cadastro e Login)
 
 const { Abrigo, Usuario } = require("../models");
 const bcrypt = require("bcryptjs");
@@ -16,6 +16,7 @@ exports.cadastroAbrigo = async (req, res) => {
     associationData,
     socialNetwork,
     animalCount,
+    questionnaireData,
   } = req.body;
 
   if (!name || !email || !password || !cnpj || !address || !phone) {
@@ -36,6 +37,8 @@ exports.cadastroAbrigo = async (req, res) => {
       associationData,
       socialNetwork,
       animalCount,
+      questionnaireData,
+      status: 'Pendente'
     });
 
     novoAbrigo.password = undefined;
@@ -98,6 +101,12 @@ exports.loginAbrigo = async (req, res) => {
       return res.status(401).json({ erro: "Senha incorreta!" });
     }
 
+    if (abrigo.status !== 'Aprovado') {
+        const mensagem = abrigo.status === 'Rejeitado'
+            ? "Seu cadastro não foi aprovado após análise."
+            : "Cadastro em análise. Aguarde o contato de nossa equipe.";
+        return res.status(403).json({ erro: mensagem });
+    }
     const token = jwt.sign(
       {
         id: abrigo.id,
@@ -144,6 +153,7 @@ exports.loginUsuario = async (req, res) => {
         id: usuario.id,
         email: usuario.email,
         tipo: "usuario",
+        role: usuario.role,
       },
       process.env.JWT_SECRET,
       {

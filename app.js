@@ -1,11 +1,13 @@
-// Esse é o arquivo principal do nosso servidor (app.js)
+// Arquivo principal do servidor
 
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("./routes/authRoutes");
 const animalRoutes = require("./routes/animalRoutes");
 const solicitacaoRoutes = require("./routes/solicitacaoRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
@@ -21,6 +23,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/animais", animalRoutes);
 app.use("/solicitacoes", solicitacaoRoutes);
+app.use("/admin", adminRoutes);
 
 const PORT = 8080;
 

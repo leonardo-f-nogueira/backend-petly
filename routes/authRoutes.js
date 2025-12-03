@@ -1,4 +1,4 @@
-// Esse arquivo define as rotas de Autenticação (/auth)
+// Esse arquivo define as rotas de autenticação(/auth)
 
 const express = require('express');
 const router = express.Router();

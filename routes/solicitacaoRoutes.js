@@ -1,4 +1,4 @@
-// Esse arquivo define as rotas de Solicitações (/solicitacoes)
+// Esse arquivo define as rotas de solicitações(/solicitacoes)
 
 const express = require('express');
 const router = express.Router();
