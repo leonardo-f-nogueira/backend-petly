@@ -1,4 +1,4 @@
-// Este arquivo representa a tabela 'Animais' no banco de dados.
+// Arquivo da tabela animais no banco.
 
 'use strict';
 const { Model } = require('sequelize');

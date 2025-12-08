@@ -1,4 +1,4 @@
-// Este arquivo representa a tabela 'SolicitacaoInteresses' (a "conexão" entre usuário e animal).
+// Este arquivo representa a tabela 'SolicitacaoInteresses'.
 
 'use strict';
 const {
